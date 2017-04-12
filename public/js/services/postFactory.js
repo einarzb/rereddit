@@ -1,13 +1,17 @@
-app.factory('postFactory', function() {
+app.factory('postFactory', function($http) {
+  //function adds items to db
+  function addPost(post){
+    return $http.post('/redditdb',post).then(function(response){
+      return response.data;//happens later on the future
+    });
+  };
+  //function get itmes populated in mongoose to the ctrler
+    function getPosts(){
+      return $http.get('/redditdb').then(function(response){
+        return response.data;
+      });
+    };
 
-  var posts = {
-    //todo
-    //add post
-    //up/down vote post
-    //add comment (to post)
-    //up/down vote comment (belonging to post)
-    //extension: admin can delete post
-    //extension: admin can delete comment (from post)
-  }
-  return posts;
+
+  return getPosts:getPosts, addPost:addPost;
 });
