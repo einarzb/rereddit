@@ -1,5 +1,6 @@
 app.factory('postFactory', function() {
 
+
   var posts = {
     //todo
     //add post
