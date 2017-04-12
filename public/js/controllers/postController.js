@@ -1,20 +1,25 @@
-app.controller('PostController', function($scope, postFactory) {
+app.controller('PostController', function(vcRecaptchaService, $http, $scope, postFactory) {
 $scope.title;
 $scope.sub;
 
 //recaptcha
 var vm = this;
-	//If the recaptcha value is empty alert error else alert the recaptcha resonse
 	vm.signup = function() {
+    //if string is empty
 		if (vcRecaptchaService.getResponse() === "") {
 			alert("Please resolve the captcha and submit!")
 		} else {
-			alert(vcRecaptchaService.getResponse());
+      alert(vcRecaptchaService.getResponse());
+      var post_data = {
+        'title':vm.title,
+        'text':vm.text,
+        'link':vm.link,
+        'g-recaptcha-response':vcRecaptchaService.getResponse() //send g-captcah-reponse to our server
+      }
 		}
 	};
-  
-  $scope.addPost = function(post) {
-    console.log(post.myRecaptchaResponse);
+
+  $scope.addPost = function() {
     alert("im submit")
     // if($scope.title > 0 && $scope.link > 0 || $scope.text > 0 ){
     //   alert("yo oy yo")
