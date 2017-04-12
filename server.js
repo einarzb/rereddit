@@ -1,7 +1,9 @@
 //package requirements
 var express = require('express');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var request = require('request');
 var mongoose = require('mongoose');
+
 
 //routing requirements
 // var postsRoutes = require('./routes/postsRoutes');
@@ -55,6 +57,25 @@ app.get('/getAll', function (req, res, next) {
      });
 });
 
+
+//recaptcha
+app.post('/submit',function(req,res){
+if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === "" || req.body['g-recaptcha-response'] === null){
+  return res.json({"responseCode" : 1, 'responseDesc' : "Please select captcha"});
+}
+var secretKey = '6LcmyBwUAAAAAF4LQYIRvNC1onxgmumqr6rziVFL';
+var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+
+request(verificationUrl,function(error,response,body) {
+    body = JSON.parse(body);
+    if(body.success !== undefined && !body.success) {
+        return res.json({"responseCode" : 1,"responseDesc" : "Failed captcha verification"});
+      }
+    res.json({"responseCode" : 0,"responseDesc" : "Sucess"});
+  });
+});
+
+//submitting post
 app.post('/posts', function(req, res, next){
   var newPost = new Post(req.body);
   newPost.save(function(err, post){
