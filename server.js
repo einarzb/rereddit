@@ -32,41 +32,6 @@ var User = require('./models/userModel');
 var Post = require('./models/postModel');
 var Comment = require('./models/commentModel');
 
-//populating DB
-
-var user1 = new User ({
-  name: "einarzb",
-  posts: [],
-  comments: []
-});
-
-var post = new Post ({
-  author: user1._id,
-  title: "My first reddit post",
-  text: "OMG this is brilliant I'm so excited!",
-  link: "http://www.ynet.co.il",
-  comments: [],
-  upVote: 0,
-  downVote: 0
-});
-
-var comment = new Comment ({
-  author:"talkbacker",
-  commentText: "Einar is a great writer, you shold get a politzer",
-  post: post._id
-});
-
-//save comment
-comment.save();
-
-//push
-post.comments.push(comment);
-user1.comments.push(comment);
-user1.posts.push(post);
-
-//save 'em
-user1.save();
-post.save();
 
 // Start a server listener
 app.listen(2000, function() {

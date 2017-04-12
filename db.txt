@@ -1,5 +1,6 @@
 
-users
+users:
+
 { "_id" : ObjectId("58edf9fcae1dd729e2fa4e85"),
  "name" : "einarzb",
  "comments" : [ ObjectId("58edf9fcae1dd729e2fa4e87") ],
@@ -8,17 +9,56 @@ users
     }
 
 posts
+
 { "_id" : ObjectId("58edf9fcae1dd729e2fa4e86"),
  "author" : ObjectId("58edf9fcae1dd729e2fa4e85"),
   "title" : "My first reddit post",
    "text" : "OMG this is brilliant I'm so excited!",
-    "link" : "http://www.ynet.co.il",
+    "link" : "http:www.ynet.co.il",
      "upVote" : 0,
       "downVote" : 0,
        "comments" : [ ObjectId("58edf9fcae1dd729e2fa4e87") ],
         "__v" : 0 }
+
 comments
+
 { "_id" : ObjectId("58edf9fcae1dd729e2fa4e87"),
  "author" : "talkbacker",
   "commentText" : "Einar is a great writer, you shold get a politzer",
    "post" : ObjectId("58edf9fcae1dd729e2fa4e86"), "__v" : 0 }
+
+  **** populating DB ****
+
+    var user1 = new User ({
+      name: "einarzb",
+      posts: [],
+      comments: []
+    });
+
+    var post = new Post ({
+      author: user1,
+      title: "My first reddit post",
+      text: "OMG this is brilliant I'm so excited!",
+      link: "http:www.ynet.co.il",
+      comments: [],
+      upVote: 0,
+      downVote: 0
+    });
+
+    var comment = new Comment ({
+      author:"talkbacker",
+      commentText: "Einar is a great writer, you shold get a politzer",
+      post: post
+    });
+
+   save comment
+    comment.save();
+
+   push
+    post.comments.push(comment);
+    user1.comments.push(comment);
+    user1.posts.push(post);
+
+   save 'em
+    user1.save();
+    post.save();
