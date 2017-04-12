@@ -17,6 +17,9 @@ mongoose.connect('mongodb://localhost/redditdb', function(err) {
     if (err) throw err;
 });
 
+//passport authentication
+var passport = require('./models/passport');
+
 //body parser
 var bodyParser = require('body-parser')
 app.use(bodyParser.json());
@@ -26,9 +29,8 @@ app.use(bodyParser.urlencoded({
 
 //Load the xample data model/schema -> Use to manipualte data from mongoDB
 var userModel = require('./models/userModel');
+var postModel = require('./models/postModel');
 var commentModel = require('./models/commentModel');
-var postModel = require('./models/postModel');
-var postModel = require('./models/postModel');
 
 // Start a server listener
 app.listen(2000, function() {
