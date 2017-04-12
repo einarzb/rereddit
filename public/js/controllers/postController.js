@@ -1,5 +1,6 @@
 app.controller('PostController', function($scope, postFactory) {
-
+$scope.title;
+$scope.sub;
   $scope.addPost = function() {
     //todo
   }
