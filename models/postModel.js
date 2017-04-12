@@ -4,13 +4,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema; //the function that constructs objects
 
 var postSchema = new Schema({
+  author: {type: String},
   title: { type: String },
   text: {type: String},
   link: {type: String},
-  comments: [{type: Schema.Types.ObjectId, ref: 'Comment' }]
+  comments: [{type: Schema.Types.ObjectId, ref: 'Comment' }],
+  upVote: {type: Number},
+  downVote: {type: Number}
   // image: {type: String}
   //subReddit: {type: String}
-  //username
 });
 
 var Post = mongoose.model("Post", postSchema);
