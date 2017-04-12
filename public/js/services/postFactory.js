@@ -12,6 +12,6 @@ app.factory('postFactory', function($http) {
       });
     };
 
-
   return {getPosts:getPosts, addPost:addPost}
+
 });
