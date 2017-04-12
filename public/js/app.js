@@ -10,6 +10,21 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: '/templates/home.html',
       controller: 'PostController'
     })
+    .state('add', {
+      url: '/add',
+      templateUrl: '/templates/add.html',
+      controller: 'PostController'
+    })
+        .state('add.link', {
+          url: '/link',
+          templateUrl: '/templates/add-link.html',
+          controller: 'PostController'
+        })
+        .state('add.text', {
+          url: '/text',
+          templateUrl: '/templates/add-text.html',
+          controller: 'PostController'
+        })
     .state('comment', {
       url: '/post/:id',
       templateUrl: '/templates/comments.html',

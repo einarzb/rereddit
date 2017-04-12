@@ -1,0 +1,203 @@
+<form class="well" ng-submit="addPost()">
+    <h3>Add a new post</h3>
+    <div class="pull-left">
+        <a ui-sref="add.text">
+            <button type="button" class="btn btn-info btn-sm">text</button>
+        </a>
+        <a ui-sref="add.link">
+            <button type="button" class="btn btn-info btn-sm">link</button>
+        </a>
+    </div>
+    <br><br>
+    <div class="form-group">
+        <label>Title</label> {{title}}
+        <input type="text" class="form-control" placeholder="title" ng-model="recap.title" required></input>
+        <div ui-view></div>
+        <label>Choose sub-reddits:</label> {{sub}}
+        <ul class="tags ">
+            <a href="{{sub}}">
+                <li class="tag" ng-model="sub">Art
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">AskReddit
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">askscience
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">aww
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">books
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">creepy
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">dataisbeautiful
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">DIY
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">Documentaries
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">EarthPorn
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">explainkeimfive
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">food
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">funny
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">Futurology
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">gadgets
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">gaming
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">GetMotivated
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">gifs
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">history
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">IAmA
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">InternetIsBeautiful
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">Jokes
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">mildlyinteresting
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">movies
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">Music
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">news
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">nosleep
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">nottheonion
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">OldSchoolCool
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">personalfinance
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">philosophy
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">photoshopbattles
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">pics
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">science
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">Showerthoughts
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">space
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">sports
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">television
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">tifu
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">todayilearned
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">TwoXChromosomes
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">UpliftingNews
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">videos
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">worldnews
+                </li>
+            </a>
+            <a href="#">
+                <li class="tag" ng-model="sub">WritingPrompts
+                </li>
+            </a>
+        </ul>
+
+    </div>
+    <div vc-recaptcha theme="light" type="image" class="g-recaptcha" key="'6LcmyBwUAAAAADTYu8rt_yTNBSAizOo3IJD18Kkd'"> </div>
+    <button type="submit" class="btn btn-primary">Post</button>
+</form>

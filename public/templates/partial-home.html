@@ -1,0 +1,11 @@
+<div ng-repeat="post in posts | orderBy:'-upvotes' track by $index">
+    <span class="glyphicon glyphicon-thumbs-up" ng-click="upvote()"> </span>
+    <span class="glyphicon glyphicon-thumbs-down" ng-click="downvote()"> </span> {{post.upvotes}}
+    <span class="post-text">
+      {{post.text}}
+    </span> - by {{post.author}}
+    <a ui-sref="comment({id: post._id})">comments</a>
+</div>
+<!--its the addpost-->
+<a ui-sref="add">add post</a>
+<div ui-view></div>
