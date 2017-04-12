@@ -7,7 +7,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state('home', {
       url: '/home',
-      templateUrl: '/templates/home.html',
+      templateUrl: '/templates/partial-home.html',
       controller: 'PostController'
     })
     .state('add', {
