@@ -1,4 +1,4 @@
-var app = angular.module('rereddit', ['ui.router']);
+var app = angular.module('rereddit', ['ui.router', 'vcRecaptcha']);
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $urlRouterProvider.otherwise('home');
