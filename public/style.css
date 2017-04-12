@@ -1,4 +1,36 @@
-.comment-body,
+.form-control{
+  width:400px;
+  margin-top: 10px;
+}
+
+.g-recaptcha {margin-bottom: 10px;}
+.tags {
+  display:flex;
+  flex-wrap: wrap;
+  margin-left: -40px;
+}
+.tag {
+  text-decoration: none;
+  font-family: 'helvetica';
+    cursor: default;
+    font-size: 1.4rem;
+    height: 1.5rem;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-top: 4px;
+    margin-right: 6px;
+    padding: 0 6px;
+    padding-bottom: 4px;
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.08);
+    color: rgba(0,0,0,.8);
+    background: #1988e0;
+    background: var(--accentColor,#1988e0);
+    background-image: linear-gradient(90deg,hsla(0,0%,100%,.9) 0,hsla(0,0%,100%,.9));
+}
+
 .post-text {
     font-size: 24px;
     margin-left: 30px;
