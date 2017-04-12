@@ -68,6 +68,23 @@ app.post('/posts', function(req, res, next){
     })
 });
 
+//upVote / downVote routes
+app.put('/posts/:id', function(req, res, next){
+  //posts before change
+  Post.find({_id: req.params.id}).exec(function(err, post){
+  });
+  //posts after voting
+  Post.findOneAndUpdate({_id: req.params.id}, req.body, {new:true}).exec(function( err, post){ //pass 3 things: id, req.body, boolean and func
+     if(err){
+      console.error(err);
+      return next (err);
+    }else{
+      res.send(post);
+    }
+  });
+});
+
+
 // comment routes
 app.post('/comment/:id', function(req,res){
   Post.findOne({_id: req.params.id}, function(err, foundPost){
@@ -84,21 +101,17 @@ app.post('/comment/:id', function(req,res){
   })
 });
 
-//author routes
-app.post('/author/:id', function(req,res){
-  Post.findOne({_id: req.params.id}, function(err, foundPost){
+//author routes - getting all the author's posts
+app.get('/author/:id', function(req,res){
+  Post.find({author: req.params.id}, function(err, foundPost){
     if (err){
         console.error(err)
         return next(err);
     } else {
-        var author = new User(req.body);
-        console.log(author);
-        foundPost.author = author;
-        author.save();
-        foundPost.save();
         res.json(foundPost);
-    }
-  })
+        console.log(foundPost);
+       }
+  });
 });
 
 //importent!
