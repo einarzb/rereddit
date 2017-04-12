@@ -4,10 +4,15 @@ $scope.sub;
 
 //recaptcha
 var vm = this;
-vm.publickey = "6LcmyBwUAAAAADTYu8rt_yTNBSAizOo3IJD18Kkd"
-vm.signup = function() {
-  console.log("einar")
-}
+	//If the recaptcha value is empty alert error else alert the recaptcha resonse
+	vm.signup = function() {
+		if (vcRecaptchaService.getResponse() === "") {
+			alert("Please resolve the captcha and submit!")
+		} else {
+			alert(vcRecaptchaService.getResponse());
+		}
+	};
+  
   $scope.addPost = function(post) {
     console.log(post.myRecaptchaResponse);
     alert("im submit")

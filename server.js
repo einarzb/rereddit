@@ -139,5 +139,5 @@ app.use(function(err, req, res, next) {
 // Start a server listener
 app.listen(2000, function() {
     var appName = "rereddit";
-    console.log("App: "+ appName +" is listening on 2000. ");
+    console.log("App: "+ appName +" is listening on 2000. run me from http://127.0.0.1:2000/home/");
 });
