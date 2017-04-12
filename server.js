@@ -4,8 +4,8 @@ var bodyParser = require('body-parser')
 var mongoose = require('mongoose');
 
 //routing requirements
-var postsRoutes = require('./routes/postsRoutes');
-var router = require('./routes/authRoutes');
+// var postsRoutes = require('./routes/postsRoutes');
+// var router = require('./routes/authRoutes');
 var User = require('./models/userModel');
 var Post = require('./models/postModel');
 var Comment = require('./models/commentModel');
@@ -34,6 +34,20 @@ app.all('*', function(req, res) {
   res.sendFile(__dirname + "/public/index.html")
 });
 
+
+app.get('/get', function(req, res){
+  Post.find().exec(function(err, data){
+    res.json(data)
+  })
+});
+
+app.post('/post', function(req, res){
+  var newPost = new Post(req.body);
+  newPost.save(function(err, post){
+    res.json(post)
+  })
+})
+
 //404 error
 app.use(function(req, res, next){
   var err = new Error('Not found');
@@ -49,6 +63,7 @@ app.use(function(err, req, res, next) {
     error: err
   });
 });
+
 
 // Start a server listener
 app.listen(2000, function() {

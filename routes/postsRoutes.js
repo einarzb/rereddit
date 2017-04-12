@@ -8,21 +8,21 @@
 //up/down vote comment (belonging to post)
 //extension: delete post (admin only)
 //extension: remove comment from post (admin only)
+//
+// var express = require('express');
+// var router = express.Router();
+// var Post = require("../models/postModel");
 
-var express = require('express');
-var router = express.Router();
-var Post = require("../models/postModel");
-
-router.get('/', function(req, res, next) {
-  Post.find(function(error, redditdb) {
-    if (error) {
-      console.error(error)
-      return next(error);
-    } else {
-      res.send(redditdb);
-    }
-  });
-});
+// router.get('/', function(req, res, next) {
+//   Post.find(function(error, redditdb) {
+//     if (error) {
+//       console.error(error)
+//       return next(error);
+//     } else {
+//       res.json(redditdb);
+//     }
+//   });
+// });
 
 // router.get('/:id', function(req, res, next) {
 //   Beer.findById(req.params.id, function(error, post) {
@@ -115,4 +115,4 @@ router.get('/', function(req, res, next) {
 //
 //
 
-module.exports = router
+// module.exports = router
