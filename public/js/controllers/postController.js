@@ -3,21 +3,21 @@ $scope.title;
 $scope.sub;
 
 //recaptcha
-var vm = this;
-	vm.signup = function() {
-    //if string is empty
-		if (vcRecaptchaService.getResponse() === "") {
-			alert("Please resolve the captcha and submit!")
-		} else {
-      alert(vcRecaptchaService.getResponse());
-      var post_data = {
-        'title':vm.title,
-        'text':vm.text,
-        'link':vm.link,
-        'g-recaptcha-response':vcRecaptchaService.getResponse() //send g-captcah-reponse to our server
-      }
-		}
-	};
+// var vm = this;
+// 	vm.signup = function() {
+//     //if string is empty
+// 		if (vcRecaptchaService.getResponse() === "") {
+// 			alert("Please resolve the captcha and submit!")
+// 		} else {
+//       alert(vcRecaptchaService.getResponse());
+//       var post_data = {
+//         'title':vm.title,
+//         'text':vm.text,
+//         'link':vm.link,
+//         'g-recaptcha-response':vcRecaptchaService.getResponse() //send g-captcah-reponse to our server
+//       }
+// 		}
+// 	};
 
   $scope.addPost = function() {
     alert("im submit")
