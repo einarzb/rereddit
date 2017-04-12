@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema; //the function that constructs objects
 
 var postSchema = new Schema({
-  author: {type: String},
+  author: {type: Schema.Types.ObjectId, ref: 'User' },
   title: { type: String },
   text: {type: String},
   link: {type: String},

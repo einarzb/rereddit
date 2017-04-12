@@ -1,0 +1,24 @@
+
+users
+{ "_id" : ObjectId("58edf9fcae1dd729e2fa4e85"),
+ "name" : "einarzb",
+ "comments" : [ ObjectId("58edf9fcae1dd729e2fa4e87") ],
+  "posts" : [ ObjectId("58edf9fcae1dd729e2fa4e86") ],
+   "__v" : 0
+    }
+
+posts
+{ "_id" : ObjectId("58edf9fcae1dd729e2fa4e86"),
+ "author" : ObjectId("58edf9fcae1dd729e2fa4e85"),
+  "title" : "My first reddit post",
+   "text" : "OMG this is brilliant I'm so excited!",
+    "link" : "http://www.ynet.co.il",
+     "upVote" : 0,
+      "downVote" : 0,
+       "comments" : [ ObjectId("58edf9fcae1dd729e2fa4e87") ],
+        "__v" : 0 }
+comments
+{ "_id" : ObjectId("58edf9fcae1dd729e2fa4e87"),
+ "author" : "talkbacker",
+  "commentText" : "Einar is a great writer, you shold get a politzer",
+   "post" : ObjectId("58edf9fcae1dd729e2fa4e86"), "__v" : 0 }
