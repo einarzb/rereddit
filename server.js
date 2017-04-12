@@ -32,6 +32,21 @@ var User = require('./models/userModel');
 var Post = require('./models/postModel');
 var Comment = require('./models/commentModel');
 
+//404 error
+app.use(function(req, res, next){
+  var err = new Error('Not found');
+  err.status = 404;
+  next(err);
+});
+
+// main error handler -  warning - not for use in production code!
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.send({
+    message: err.message,
+    error: err
+  });
+});
 
 // Start a server listener
 app.listen(2000, function() {
