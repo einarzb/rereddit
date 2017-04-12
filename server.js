@@ -18,7 +18,9 @@ mongoose.connect('mongodb://localhost/redditdb', function(err) {
 });
 
 //passport authentication
-var passport = require('./models/passport');
+var router = require('./routes/authRoutes');
+
+
 
 //body parser
 var bodyParser = require('body-parser')
