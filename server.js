@@ -45,13 +45,13 @@ app.use(express.static('node_modules'));
 //   });
 // });
 
-app.get('/getAll', function (req, res, next) {
+app.get('/get', function (req, res, next) {
     Post.find(function (error, redditdb) {
           if (error) {
             console.error(error)
             return next(error); //express next function. middleware
           } else {
-            res.json(redditdb);
+            res.send(redditdb);
             console.log(redditdb);
           }
      });

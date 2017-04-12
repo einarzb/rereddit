@@ -8,15 +8,15 @@ $scope.sub;
 
   $scope.getPosts()
   .then(function(response){
-    console.log(response);
-    $scope.closet = response; //the items are populating the array
-    console.log($scope.posts);
+    //console.log(response);
+    $scope.posts = response; //the items are populating the array
+    //console.log($scope.posts);
   })
   .catch(function(error){
     console.log(error);
   })
 
-  //adds submitted item onto closet array and send it to DB
+  //adds submitted post onto posts array and send it to DB
   $scope.addPost = function(post){
        postFactory.addPost(post)
       .then(function(response){
@@ -49,10 +49,12 @@ var vm = this;
 
 
   $scope.upvote = function() {
+    alert("thank you")
     //todo
   }
 
   $scope.downvote = function() {
+    alert("fuck you")
     //todo
   }
 

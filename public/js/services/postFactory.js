@@ -1,6 +1,8 @@
 app.factory('postFactory', function($http) {
+
   //function adds items to db
   function addPost(post){
+    alert("im in post factory");
     return $http.post('/redditdb',post).then(function(response){
       return response.data;//happens later on the future
     });

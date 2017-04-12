@@ -1,9 +1,9 @@
 <div ng-repeat="post in posts | orderBy:'-upvotes' track by $index">
-    <span class="glyphicon glyphicon-thumbs-up" ng-click="upvote()"> </span>
-    <span class="glyphicon glyphicon-thumbs-down" ng-click="downvote()"> </span> {{post.upvotes}}
-    <span class="post-text">
+    <span style="font-size:25px;" class="glyphicon glyphicon-thumbs-up" ng-click="upvote()"> </span>&nbsp;
+    <span style="font-size:25px;" class="glyphicon glyphicon-thumbs-down" ng-click="downvote()"> </span> {{post.upvotes}}
+    <span class="post-text"> {{post.title}} <br>
       {{post.text}}
-    </span> - by {{post.author}}
+    </span> - by {{post.author}} <br>
     <a ui-sref="comment({id: post._id})">comments</a>
 </div>
 

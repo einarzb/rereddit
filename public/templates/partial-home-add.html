@@ -4,20 +4,20 @@
         <a ui-sref="addPost.text">
             <button type="button" class="btn btn-info btn-sm">text</button>
         </a>
-       
+
         <a ui-sref="addPost.link">
             <button type="button" class="btn btn-info btn-sm">link</button>
         </a>
     </div>
     <br><br>
     <div class="form-group">
-        <label>Title</label> {{title}}
-        <input type="text" class="form-control" placeholder="title" ng-model="recap.title" required></input>
+        <label>Title</label> {{post.title}}
+        <input type="text" class="form-control" placeholder="title" ng-model="post.title" required></input>
         <div ui-view></div>
-        <label>Choose sub-reddits:</label> {{sub}}
+        <label>Choose sub-reddits:</label> {{post.sub}}
         <ul class="tags ">
-            <a href="{{sub}}">
-                <li class="tag" ng-model="sub">Art
+            <a href="#">
+                <li class="tag" ng-model="post.sub">Art
                 </li>
             </a>
             <a href="#">

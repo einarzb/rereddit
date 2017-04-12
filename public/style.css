@@ -1,8 +1,20 @@
+body{
+  background-color: #222831;
+  color:#EEEEEE;
+}
+.navbar {
+  background-color: #EEEEEE;
+}
+
+h1{color:#EEEEEE; }
 .form-control{
   width:400px;
   margin-top: 10px;
 }
 
+h3, label{
+  color:#222831;
+}
 .g-recaptcha {margin-bottom: 10px;}
 .tags {
   display:flex;
@@ -34,6 +46,7 @@
 .post-text {
     font-size: 24px;
     margin-left: 30px;
+    color: #EEEEEE;
 }
 
 .glyphicon-thumbs-down,
