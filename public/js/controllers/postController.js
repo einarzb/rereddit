@@ -2,7 +2,7 @@ app.controller('PostController', function($scope, postFactory) {
 $scope.posts = [];
 
 //getting items from db
-  $scope.getPosts = factory.getPosts;
+  $scope.getPosts = postFactory.getPosts;
 
   $scope.getPosts()
   .then(function(response){
@@ -16,7 +16,7 @@ $scope.posts = [];
 
   //adds submitted item onto closet array and send it to DB
   $scope.addPost = function(post){
-       factory.addPost(post)
+       postFactory.addPost(post)
       .then(function(response){
         //console.log('response', response);
         $scope.posts.push(post);
