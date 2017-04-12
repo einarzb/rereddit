@@ -1,0 +1,11 @@
+{ "_id" : ObjectId("58ee1b7318def72c2b5859fd"),
+"title" : "adam and hannah forever",
+ "text" : "fuck this shit",
+  "link" : "https://www.youtube.com/watch?v=ONvNWclIes4",
+   "upVote" : 2,
+    "downVote" : 1,
+     "comments" : [
+     ObjectId("58ee1c39a7b81d2c2d18dfdb"),
+      ObjectId("58ee1c4ca7b81d2c2d18dfdc")
+      ],
+       "__v" : 2 }

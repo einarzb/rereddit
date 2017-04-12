@@ -29,24 +29,82 @@ app.use(express.static('node_modules'));
 //serve routings
 // app.use('/posts', postsRoutes);
 // app.use('/auth', authRoutes);
+
+
+// Get
+// app.get('/', function(req, res, next) {
+//   Post.find(function(error, redditdb) {
+//     if (error) {
+//       console.error(error)
+//       return next(error);
+//     } else {
+//       res.send(redditdb);
+//     }
+//   });
+// });
+
+app.get('/getAll', function (req, res, next) {
+    Post.find(function (error, redditdb) {
+          if (error) {
+            console.error(error)
+            return next(error); //express next function. middleware
+          } else {
+            res.json(redditdb);
+            console.log(redditdb);
+          }
+     });
+});
+
+app.post('/posts', function(req, res, next){
+  var newPost = new Post(req.body);
+  newPost.save(function(err, post){
+      if (err){
+          console.error(err)
+          return next(err);
+      } else {
+          console.log(post);
+          res.json(newPost)
+      }
+    })
+});
+
+// comment routes
+app.post('/comment/:id', function(req,res){
+  Post.findOne({_id: req.params.id}, function(err, foundPost){
+    if (err){
+        console.error(err)
+        return next(err);
+    } else {
+        var newComment = new Comment(req.body);
+        foundPost.comments.push(newComment);
+        newComment.save();
+        foundPost.save();
+        res.json(foundPost);
+    }
+  })
+});
+
+//author routes
+app.post('/author/:id', function(req,res){
+  Post.findOne({_id: req.params.id}, function(err, foundPost){
+    if (err){
+        console.error(err)
+        return next(err);
+    } else {
+        var author = new User(req.body);
+        console.log(author);
+        foundPost.author = author;
+        author.save();
+        foundPost.save();
+        res.json(foundPost);
+    }
+  })
+});
+
 //importent!
 app.all('*', function(req, res) {
   res.sendFile(__dirname + "/public/index.html")
 });
-
-
-app.get('/get', function(req, res){
-  Post.find().exec(function(err, data){
-    res.json(data)
-  })
-});
-
-app.post('/post', function(req, res){
-  var newPost = new Post(req.body);
-  newPost.save(function(err, post){
-    res.json(post)
-  })
-})
 
 //404 error
 app.use(function(req, res, next){
