@@ -1,38 +1,38 @@
-//todo
-//middleware, routes
-
+//package requirements
 var express = require('express');
-var app = express();
-
-//Serve static files in the root directory:
-app.use(express.static('public'));
-//Serve the node_modules files without the need for full path:
-app.use(express.static('node_modules'));
-
-// Mongoose for mongoDB connection:
+var bodyParser = require('body-parser')
 var mongoose = require('mongoose');
 
-//Connect to mongo database:
+//routing requirements
+var postsRoutes = require('./routes/postsRoutes');
+var router = require('./routes/authRoutes');
+var User = require('./models/userModel');
+var Post = require('./models/postModel');
+var Comment = require('./models/commentModel');
+
+//on AIR
+var app = express();
 mongoose.connect('mongodb://localhost/redditdb', function(err) {
     if (err) throw err;
 });
 
-//passport authentication
-var router = require('./routes/authRoutes');
-
-
-
-//body parser
-var bodyParser = require('body-parser')
+//body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-//Load the data model/schema -> Use to manipualte data from mongoDB
-var User = require('./models/userModel');
-var Post = require('./models/postModel');
-var Comment = require('./models/commentModel');
+//Serve static files in the root directory:
+app.use(express.static('public'));
+//Serve the node_modules files without the need for full path:
+app.use(express.static('node_modules'));
+//serve routings
+// app.use('/posts', postsRoutes);
+// app.use('/auth', authRoutes);
+//importent!
+app.all('*', function(req, res) {
+  res.sendFile(__dirname + "/public/index.html")
+});
 
 //404 error
 app.use(function(req, res, next){
