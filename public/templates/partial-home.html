@@ -1,12 +1,16 @@
-<div ng-repeat="post in posts | orderBy:'-upvotes' track by $index">
-    <span style="font-size:25px;" class="glyphicon glyphicon-thumbs-up" ng-click="upvote()"> </span>&nbsp;
-    <span style="font-size:25px;" class="glyphicon glyphicon-thumbs-down" ng-click="downvote()"> </span> {{post.upvotes}}
-    <span class="post-text"> {{post.title}} <br>
-      {{post.text}}
-    </span> - by {{post.author}} <br>
-    <a ui-sref="comment({id: post._id})">comments</a>
+<div class="row" style="color:#EEEEEE;">
+    <div class="col-lg-12 col-lg-pull-4">
+        <div ng-repeat="post in posts | orderBy:'-upvotes' track by $index" class="postHolder">
+            <span style="font-size:20px">{{post.upVote}}</span>
+            <span style="font-size:25px;color:#EEEEEE;" class="glyphicon glyphicon-thumbs-up" ng-click="upvote()">
+            </span>&nbsp;
+            <span style="font-size:25px;color:#EEEEEE;" class="glyphicon glyphicon-thumbs-down" ng-click="downvote()"> </span> &nbsp;
+            <span style="font-size:25px;color:#BDDAA5">{{post.title}}</span><br> by {{post.author}} <br>
+            <span class="post-text"> {{post.text}}</span> <br>
+            <a class="pull-right comments" ui-sref="comment({id: post._id})">comments</a>
+        </div>
+    </div>
 </div>
 
 <!--its the addpost-->
-<a ui-sref="addPost">add post</a>
 <div ui-view></div>

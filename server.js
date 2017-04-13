@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var mongoose = require('mongoose');
 
-
 //routing requirements
 // var postsRoutes = require('./routes/postsRoutes');
 // var router = require('./routes/authRoutes');
@@ -53,6 +52,7 @@ app.get('/get', function (req, res, next) {
           } else {
             res.send(redditdb);
             console.log(redditdb);
+            console.log("im einar");
           }
      });
 });
@@ -68,6 +68,8 @@ var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" 
 
 request(verificationUrl,function(error,response,body) {
     body = JSON.parse(body);
+    console.log("im body");
+    console.log(body);
     if(body.success !== undefined && !body.success) {
         return res.json({"responseCode" : 1,"responseDesc" : "Failed captcha verification"});
       }
@@ -76,7 +78,7 @@ request(verificationUrl,function(error,response,body) {
 });
 
 //submitting post
-app.post('/posts', function(req, res, next){
+app.post('/post', function(req, res, next){
   var newPost = new Post(req.body);
   newPost.save(function(err, post){
       if (err){

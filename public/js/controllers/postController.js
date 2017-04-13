@@ -8,9 +8,9 @@ $scope.sub;
 
   $scope.getPosts()
   .then(function(response){
-    //console.log(response);
+    console.log(response);
     $scope.posts = response; //the items are populating the array
-    //console.log($scope.posts);
+    console.log($scope.posts);
   })
   .catch(function(error){
     console.log(error);

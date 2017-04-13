@@ -14,10 +14,10 @@
         <label>Title</label> {{post.title}}
         <input type="text" class="form-control" placeholder="title" ng-model="post.title" required></input>
         <div ui-view></div>
-        <label>Choose sub-reddits:</label> {{post.sub}}
+        <label>Choose sub-reddits:</label> {{post.sub}}{{sub}}
         <ul class="tags ">
-            <a href="#">
-                <li class="tag" ng-model="post.sub">Art
+            <a href="#" ng-model="post.sub">
+                <li class="tag">Art
                 </li>
             </a>
             <a href="#">
