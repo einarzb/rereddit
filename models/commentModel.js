@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema; //the function that constructs objects
 
 var commentSchema = new Schema({
-  commentAuthor: {type: String},
+  author: {type: String},
   commentText: {type: String},
   post:{type: Schema.Types.ObjectId, ref: 'Post' }
 });

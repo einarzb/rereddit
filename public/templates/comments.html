@@ -5,7 +5,7 @@
     </p>
 </div>
 
-<div class="commentHolder" ng-repeat="comment in post.comments | orderBy: '-upvotes' ">
+<div class="commentHolder " ng-repeat="comment in post.comments | orderBy: '-upvotes' ">
     <span class="comment-body ">{{comment.commentText}}</span> <br>
     <button type="button" id="up" class="fa fa-arrow-circle-up" ng-click="commentvote(inc, 1)"></button>
     <span style="font-size:1.2em; padding:1px">{{comment.vote}} </span>
@@ -13,13 +13,12 @@
     </button> <span style="color:#dd4b4b;">{{comment.author}}</span>
     </span> <br>
 </div>
-
 <form ng-submit="addComment(comment) ">
     <h3 style="color:#EEEEEE; ">Add a new comment</h3>
     <div class="form-group ">
-        <input type="text " class="form-control " placeholder="Comment " ng-model="comment.commentText"></input>
+        <input type="text " class="form-control " placeholder="Comment " ng-model="body "></input>
     </div>
-    <button type="submit" class="btn btn-primary btn-sm ">Post</button>
-    <a class="btn btn-danger btn-sm " ui-sref="home ">Back to Feed</a>
+    <button type="submit " class="btn btn-primary btn-sm ">Post</button>
+    <a class="btn btn-danger btn-sm " ui-sref="home ">back to feed</a>
 
 </form>
