@@ -1,7 +1,7 @@
 app.controller('CommentController', function($scope, $stateParams, postFactory) {
 
   $scope.addComment = function() {
-    //todo
+    console.log("im in comments");
   }
 
   $scope.upvote = function() {

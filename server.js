@@ -44,6 +44,7 @@ app.use(express.static('node_modules'));
 //   });
 // });
 
+//populating items from server
 app.get('/get', function (req, res, next) {
     Post.find(function (error, redditdb) {
           if (error) {
@@ -79,6 +80,7 @@ request(verificationUrl,function(error,response,body) {
 
 //submitting post
 app.post('/post', function(req, res, next){
+  alert("i made it to server");
   var newPost = new Post(req.body);
   newPost.save(function(err, post){
       if (err){

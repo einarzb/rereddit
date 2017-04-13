@@ -18,6 +18,7 @@ $scope.sub;
 
   //adds submitted post onto posts array and send it to DB
   $scope.addPost = function(post){
+      console.log("im in controller");
        postFactory.addPost(post)
       .then(function(response){
         //console.log('response', response);
