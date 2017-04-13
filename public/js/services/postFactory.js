@@ -1,6 +1,7 @@
 app.factory('postFactory', function($http) {
 
   var postsFactory = {posts:[]};
+  
 
   postsFactory.getPostId = function (currentId) {
   console.log("im in getPostId in postfactory");
@@ -11,10 +12,18 @@ app.factory('postFactory', function($http) {
     }
   };
 }
-  //function adds items to db
+  //function add posts to db
   postsFactory.addPost = function(post){
-    console.log("now im in factory")
+    console.log("im addPost and now im in factory")
     return $http.post('/post', post).then(function(response){
+      return response.data;//happens later on the future
+    });
+  };
+
+  //function add comments to db
+  postsFactory.addComment = function(comment){
+    console.log("im addComment and im in factory")
+    return $http.post('/post', comment).then(function(response){
       return response.data;//happens later on the future
     });
   };

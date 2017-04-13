@@ -58,8 +58,12 @@ app.get('/get', function (req, res, next) {
      });
 });
 
+//fetching posts id - for populate comment and other use! must use FINDONE only
 app.get('/post/:id', function (req, res, next) {
-  Post.findOne({_id: req.params.id}).exec(function(error, post){
+  //populate comments
+  Post.findOne({_id: req.params.id}).populate('comments').exec(function(error, post){
+    console.log("im pupolated in server");
+    console.log(post);
           if (error) {
             console.error(error)
             return next(error); //express next function. middleware
