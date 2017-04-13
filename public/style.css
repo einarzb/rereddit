@@ -39,8 +39,9 @@ h3, label{
  }
 
 .commentCounter{
-  margin-left: 120px;
+  padding: 10px;
   font-size: 0.7em;
+  margin-top:-12px;
 }
 .g-recaptcha {margin-bottom: 10px;}
 .tags {
