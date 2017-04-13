@@ -8,7 +8,7 @@ app.factory('postFactory', function($http) {
   console.log(currentId);
   for (var i = 0; i < postsFactory.posts.length; i++) {
     if(postsFactory.posts[i]._id === currentId){
-      return postsFactory.posts[i]; //returns location of current city
+      return postsFactory.posts[i];
     }
   };
 }
@@ -23,7 +23,7 @@ app.factory('postFactory', function($http) {
   //function add comments to db
   postsFactory.addComment = function(comment){
     console.log("im addComment and im in factory")
-    return $http.post('/comment', comment).then(function(response){
+    return $http.post('/comments/:id', comment).then(function(response){
       return response.data;//happens later on the future
     });
   };

@@ -32,18 +32,6 @@ app.use(express.static('node_modules'));
 // app.use('/auth', authRoutes);
 
 
-// Get
-// app.get('/', function(req, res, next) {
-//   Post.find(function(error, redditdb) {
-//     if (error) {
-//       console.error(error)
-//       return next(error);
-//     } else {
-//       res.send(redditdb);
-//     }
-//   });
-// });
-
 //populating items from db
 app.get('/get', function (req, res, next) {
     Post.find(function (error, redditdb) {
@@ -54,21 +42,6 @@ app.get('/get', function (req, res, next) {
             res.send(redditdb);
             console.log(redditdb);
             console.log("im einar");
-          }
-     });
-});
-
-//fetching posts id - for populate comment and other use! must use FINDONE only
-app.get('/post/:id', function (req, res, next) {
-  //populate comments
-  Post.findOne({_id: req.params.id}).populate('comments').exec(function(error, post){
-    console.log("im pupolated in server");
-    console.log(post);
-          if (error) {
-            console.error(error)
-            return next(error); //express next function. middleware
-          } else {
-            res.send(post);
           }
      });
 });
@@ -107,25 +80,39 @@ app.post('/post', function(req, res, next){
     })
 });
 
-//upVote / downVote routes
-app.put('/post/:id', function(req, res, next){
-  //posts before change
-  Post.find({_id: req.params.id}).exec(function(err, post){
-  });
-  //posts after voting
-  Post.findOneAndUpdate({_id: req.params.id}, req.body, {new:true}).exec(function( err, post){ //pass 3 things: id, req.body, boolean and func
-     if(err){
-      console.error(err);
-      return next (err);
-    }else{
-      res.send(post);
+// submitting comment
+app.post('/comments/:id', function(req,res, next){
+  console.log("comment server");
+  var newComment = new Comment(req.body);
+  newComment.save(function(err, comment){
+    if (err){
+        console.error(err)
+        return next(err);
+    } else {
+      console.log(comment);
+        res.json(newComment);
     }
-  });
+  })
 });
 
 
-// comment routes
-app.post('/comment/:id', function(req,res){
+//fetching posts id - for populate comment and other use! must use FINDONE only
+app.get('/post/:id', function (req, res, next) {
+  //populate comments
+  Post.findOne({_id: req.params.id}).populate('comments').exec(function(error, post){
+    console.log("im pupolated in server");
+    console.log(post);
+          if (error) {
+            console.error(error)
+            return next(error); //express next function. middleware
+          } else {
+            res.send(post);
+          }
+     });
+});
+
+// fetching comment id
+app.get('/comment/:id', function(req,res, next){
   Post.findOne({_id: req.params.id}, function(err, foundPost){
     if (err){
         console.error(err)
@@ -140,9 +127,27 @@ app.post('/comment/:id', function(req,res){
   })
 });
 
+//upVote / downVote routes
+// app.put('/post/:id', function(req, res, next){
+//   //posts before change
+//   Post.find({_id: req.params.id}).exec(function(err, post){
+//   });
+//   //posts after voting
+//   Post.findOneAndUpdate({_id: req.params.id}, req.body, {new:true}).exec(function( err, post){ //pass 3 things: id, req.body, boolean and func
+//      if(err){
+//       console.error(err);
+//       return next (err);
+//     }else{
+//       res.send(post);
+//     }
+//   });
+// });
+
+
+
 //author routes - getting all the author's posts
 app.get('/author/:id', function(req,res){
-  Post.findOne({_id: req.params.id}).populate('author').exec(function(error, foundPost){
+  Post.findOne({_id: req.params.id}).populate('author').exec(function(err, foundPost){
     console.log(foundPost);
     if (err){
         console.error(err)
