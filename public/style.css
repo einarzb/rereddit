@@ -37,6 +37,25 @@ h3, label{
    padding:8px;
    color:#EEEEEE;
  }
+.fa, .fa-arrow-circle-down {
+  color:#fff;
+}
+
+#up, #down{
+  font-size: 1.6em;
+  background-color:transparent;
+  border:none;
+  outline: none;
+  padding:5px;
+}
+
+#up:focus {
+    color:#00ff59;
+}
+#down:focus {
+    color:#dd4b4b;
+}
+
 
 .commentCounter{
   padding: 10px;

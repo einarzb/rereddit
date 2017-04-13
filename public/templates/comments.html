@@ -1,15 +1,15 @@
 <div class="page-header">
     <p class="postRefHolder"> {{post.title}} <br> <span style="font-size:0.9em">{{post.text}}</span> <br>
-        <span style="font-size:0.7em">written by -   <span style="color:#9b1818;">{{post.author}}</span></span>
+        <span style="font-size:0.7em">written by -   <span style="color:#ffb600;">{{post.author}}</span></span>
         <span class="commentCounter pull-right">{{commentCounter}} comments</span>
     </p>
 </div>
 
 <div class="commentHolder " ng-repeat="comment in post.comments | orderBy: '-upvotes' ">
     <span class="comment-body ">{{comment.commentText}}</span> <br>
-    <span class="glyphicon glyphicon-thumbs-up " ng-click="upvote() "></span>
-    <span class="glyphicon glyphicon-thumbs-down " ng-click="downvote() "></span> {{post.upVote}} - by
-    <span style="color:#9b1818;">
+    <i class="fa fa-arrow-circle-up" aria-hidden="true" ng-click="upvote()"></i>
+    <span class="fa fa-arrow-circle-down" aria-hidden="true" ng-click="downvote()"></span> {{post.upVote}} - by
+    <span style="color:#ffb600;">
       {{comment.author}}</span> <br>
 </div>
 <form ng-submit="addComment(comment) ">

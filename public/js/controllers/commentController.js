@@ -1,22 +1,24 @@
 app.controller('CommentController', function($scope, $stateParams, postFactory, relevantPost ) {
+  //comment counter
   $scope.commentCounter = 0;
 
   //relevantPost returns theWholePost.data from the postFactory function in APP.js
  $scope.post = relevantPost;
- console.log("im an object full of data");
- console.log($scope.post);
+ // console.log("im an object full of data");
+ // console.log($scope.post);
  $scope.text = relevantPost.text;
  //post body
- console.log("im text");
- console.log($scope.text);
+ // console.log("im text");
+ // console.log($scope.text);
  //comments array
  $scope.post.comments;
- console.log("comments array from db");
- console.log($scope.post.comments);
+ // console.log("comments array from db");
+ // console.log($scope.post.comments);
+
 //length of comments array - num of coments
  $scope.commentCounter = $scope.post.comments.length;
  if($scope.commentCounter == "0") {
-   $scope.commentCounter = "no";
+    $scope.commentCounter = "no";
  }
  console.log($scope.commentCounter);
 
