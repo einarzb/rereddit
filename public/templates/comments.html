@@ -1,5 +1,4 @@
 <div class="page-header">
-    <a ui-sref="home">back</a>
     <p style="color:#EEEEEE;font-size:1.2em">{{post.text}}</p>
 </div>
 
@@ -13,5 +12,7 @@
     <div class="form-group ">
         <input type="text " class="form-control " placeholder="Comment " ng-model="body "></input>
     </div>
-    <button type="submit " class="btn btn-primary ">Post</button>
+    <button type="submit " class="btn btn-primary btn-sm ">Post</button>
+    <a class="btn btn-danger btn-sm" ui-sref="home">back to feed</a>
+
 </form>
