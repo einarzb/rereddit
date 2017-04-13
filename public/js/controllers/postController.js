@@ -17,15 +17,15 @@ $scope.sub;
   })
 
   //adds submitted post onto posts array and send it to DB
-  $scope.addPost = function(post, currentId){
+  $scope.addPost = function(post){
         console.log("im in controller");
         postFactory.addPost(post)
           .then(function(response){
           $scope.posts.push(post);
           //fetching post id
-          var currentId = {id: post._id};
+          var currentId = "id";
+          postFactory.getPostId(currentId)
           console.log(currentId);
-          postFactory.getPostId(currentId);
       })
       .catch(function(error){
         console.log(error);
