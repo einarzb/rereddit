@@ -29,7 +29,7 @@ app.factory('postFactory', function($http) {
   };
 
   //function get itmes populated in mongoose to the ctrler
-    postsFactory.getPosts= function(post){
+    postsFactory.getPosts = function(post){
       return $http.get('/get').then(function(response){
         postsFactory.posts = response.data;
       });
