@@ -1,27 +1,17 @@
 app.controller('CommentController', function($scope, $stateParams, postFactory, relevantPost ) {
 
-  $scope.comments = [];
-
-
   //relevantPost returns theWholePost.data from the postFactory function in APP.js
  $scope.post = relevantPost;
  console.log("im an object full of data");
  console.log($scope.post);
  $scope.text = relevantPost.text;
+ //post body
  console.log("im text");
  console.log($scope.text);
- //comments
+ //comments array
  $scope.post.comments;
+ console.log("comments array");
  console.log($scope.post.comments);
- //comments text
- // $scope.post.comments.author;
- // console.log("fuckckckck");
- // console.log($scope.post.comments.author);
- // $scope.post.comments.commentText;
-
-
- // $scope.comments = relevantPost.comments;
- // console.log();
 
  //submites comments onto comments array and send it to DB
   $scope.addComment = function (comment) {
@@ -29,7 +19,9 @@ app.controller('CommentController', function($scope, $stateParams, postFactory, 
     postFactory.addComment(comment)
     .then(function(response){
       //populating the client-side array
-      $scope.comments.push(response.data);
+      $scope.post.comments.push(response.data);
+      console.log("populating client-side");
+      console.log($scope.post.comments);
       })
     .catch(function(error){
         console.log(error);
