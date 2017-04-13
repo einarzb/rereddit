@@ -1,22 +1,15 @@
-app.controller('CommentController', function($scope, $stateParams, postFactory) {
+app.controller('CommentController', function($scope, $stateParams, postFactory, relevantPost ) {
+ $scope.post = relevantPost; //relevantPost returns theWholePost.data from the postFactory function in APP.js
+ console.log("im scope a ");
+ console.log($scope.post);
+ $scope.text = relevantPost.text;
+ console.log("im text");
+ console.log($scope.text);
 
-    $scope.getPostId = function (currentId) {
-    console.log("im in getPostId in comment ctrler");
-    console.log(currentId);
-    for (var i = 0; i < postFactory.posts.length; i++) {
-      if(postFactory.posts[i].currentId === currentId){
-        return i; //returns location of current city
-      }
-    };
-  }
-
-    $scope.addComment = function (comment,currentId) {
+  $scope.addComment = function (comment,currentId) {
         console.log(currentId);
         console.log(comment);
         console.log("im in comments");
-        console.log( $scope.text);
-        var i = getPostId(currentId);
-        postFactory.posts[i].comments.push(comment);
   };
 
   $scope.upvote = function() {

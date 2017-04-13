@@ -26,10 +26,26 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             controller: 'PostController'
           })
     .state('comment', {
-      url: '/post/:id',
+      url: '/post/:id', //stateParams use this id in ctrler
       templateUrl: '/templates/comments.html',
-      controller: 'CommentController'
-    })
+      controller: 'CommentController',
+      //resolve - function that runs only when comment state is on. only when it ends loading - then the ctrler would run.
+      resolve: {
+        //relevantPost is a function build here and injected onto CommentController
+        relevantPost: function (postFactory, $stateParams, $http) {
+              //fetching post id from routing via stateParams of the comment routing
+               var postId = $stateParams.id;
+
+               return $http.get("/post/" + postId)
+               .then(function (theWholePost) {
+                       console.log("the next obj comes from app.js");
+                       //console.log(theWholePost.data);
+                       return theWholePost.data;
+               })
+          }
+       }
+      })
+
     .state('login', {
       url: '/login',
       templateUrl: '/templates/login.html',

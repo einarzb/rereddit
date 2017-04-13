@@ -2,6 +2,15 @@ app.factory('postFactory', function($http) {
 
   var postsFactory = {posts:[]};
 
+  postsFactory.getPostId = function (currentId) {
+  console.log("im in getPostId in postfactory");
+  console.log(currentId);
+  for (var i = 0; i < postsFactory.posts.length; i++) {
+    if(postsFactory.posts[i]._id === currentId){
+      return postsFactory.posts[i]; //returns location of current city
+    }
+  };
+}
   //function adds items to db
   postsFactory.addPost = function(post){
     console.log("now im in factory")

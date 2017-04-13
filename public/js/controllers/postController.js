@@ -1,4 +1,4 @@
-app.controller('PostController', function($scope, postFactory) {
+app.controller('PostController', function($scope, postFactory, $state) {
 $scope.posts = [];
 $scope.title;
 $scope.sub;
@@ -21,11 +21,10 @@ $scope.sub;
         console.log("im in controller");
         postFactory.addPost(post)
           .then(function(response){
-          $scope.posts.push(post);
-          //fetching post id
-          var currentId = "id";
-          postFactory.getPostId(currentId)
-          console.log(currentId);
+          //populating the client-side array
+          $scope.posts.push(response.data);
+          //after submit we return to home
+          $state.go('home');
       })
       .catch(function(error){
         console.log(error);

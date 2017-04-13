@@ -44,7 +44,7 @@ app.use(express.static('node_modules'));
 //   });
 // });
 
-//populating items from server
+//populating items from db
 app.get('/get', function (req, res, next) {
     Post.find(function (error, redditdb) {
           if (error) {
@@ -54,6 +54,17 @@ app.get('/get', function (req, res, next) {
             res.send(redditdb);
             console.log(redditdb);
             console.log("im einar");
+          }
+     });
+});
+
+app.get('/post/:id', function (req, res, next) {
+  Post.findOne({_id: req.params.id}).exec(function(error, post){
+          if (error) {
+            console.error(error)
+            return next(error); //express next function. middleware
+          } else {
+            res.send(post);
           }
      });
 });
@@ -93,7 +104,7 @@ app.post('/post', function(req, res, next){
 });
 
 //upVote / downVote routes
-app.put('/posts/:id', function(req, res, next){
+app.put('/post/:id', function(req, res, next){
   //posts before change
   Post.find({_id: req.params.id}).exec(function(err, post){
   });
