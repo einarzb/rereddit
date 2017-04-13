@@ -142,7 +142,8 @@ app.post('/comment/:id', function(req,res){
 
 //author routes - getting all the author's posts
 app.get('/author/:id', function(req,res){
-  Post.find({author: req.params.id}, function(err, foundPost){
+  Post.findOne({_id: req.params.id}).populate('author').exec(function(error, foundPost){
+    console.log(foundPost);
     if (err){
         console.error(err)
         return next(err);
