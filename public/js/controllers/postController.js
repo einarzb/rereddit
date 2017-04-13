@@ -7,9 +7,9 @@ $scope.sub;
   $scope.getPosts = postFactory.getPosts;
 
   $scope.getPosts()
-  .then(function(response){
-    console.log(response);
-    $scope.posts = response; //the items are populating the array
+  .then(function(){
+    //console.log(response);
+    $scope.posts = postFactory.posts; //the items are populating the array
     console.log($scope.posts);
   })
   .catch(function(error){
@@ -17,12 +17,15 @@ $scope.sub;
   })
 
   //adds submitted post onto posts array and send it to DB
-  $scope.addPost = function(post){
-      console.log("im in controller");
-       postFactory.addPost(post)
-      .then(function(response){
-        //console.log('response', response);
-        $scope.posts.push(post);
+  $scope.addPost = function(post, currentId){
+        console.log("im in controller");
+        postFactory.addPost(post)
+          .then(function(response){
+          $scope.posts.push(post);
+          //fetching post id
+          var currentId = {id: post._id};
+          console.log(currentId);
+          postFactory.getPostId(currentId);
       })
       .catch(function(error){
         console.log(error);
