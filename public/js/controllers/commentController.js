@@ -1,4 +1,5 @@
 app.controller('CommentController', function($scope, $stateParams, postFactory, relevantPost ) {
+  $scope.commentCounter = 0;
 
   //relevantPost returns theWholePost.data from the postFactory function in APP.js
  $scope.post = relevantPost;
@@ -12,6 +13,9 @@ app.controller('CommentController', function($scope, $stateParams, postFactory, 
  $scope.post.comments;
  console.log("comments array from db");
  console.log($scope.post.comments);
+//length of comments array - num of coments 
+ $scope.commentCounter = $scope.post.comments.length;
+ console.log($scope.commentCounter);
 
  //submites comments onto comments array and send it to DB
   $scope.addComment = function (comment) {

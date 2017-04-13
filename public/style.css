@@ -25,7 +25,11 @@ h3, label{
   padding:8px;
   color:#EEEEEE;
 }
-
+.postRefHolder{
+  color:#EEEEEE;
+  font-size:1.4em;
+  background-color:rgba(46, 56, 46, 0.3);
+}
  .commentHolder {
    background-color:rgba(120, 219, 237, 0.2);
    border:none;
@@ -34,6 +38,10 @@ h3, label{
    color:#EEEEEE;
  }
 
+.commentCounter{
+  margin-left: 120px;
+  font-size: 0.7em;
+}
 .g-recaptcha {margin-bottom: 10px;}
 .tags {
   display:flex;

@@ -5,12 +5,11 @@
             <span style="font-size:25px;color:#EEEEEE;" class="glyphicon glyphicon-thumbs-up" ng-click="upvote()">
             </span>&nbsp;
             <span style="font-size:25px;color:#EEEEEE;" class="glyphicon glyphicon-thumbs-down" ng-click="downvote()"> </span> &nbsp;
-            <span style="font-size:25px;color:#BDDAA5">{{post.title}}</span><br> by {{post.author}} <br>
+            <span style="font-size:25px;color:#BDDAA5">{{post.title}}</span><br> by <span style="color:#9b1818;"> {{post.author}}</span> <br>
             <span class="post-text"> {{post.text}} </span> <br>{{post.link}} <br>
-            <a class="pull-right comments" ui-sref="comment({id: post._id})">comments</a>
+            <a class="pull-right comments" ui-sref="comment({id: post._id})">{{commentCounter}} comments</a>
         </div>
     </div>
-</div>
 
-<!--its the addpost-->
-<div ui-view></div>
+    <!--its the addpost-->
+    <div ui-view></div>
