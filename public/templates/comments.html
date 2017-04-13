@@ -1,12 +1,12 @@
 <div class="page-header">
     <a ui-sref="home">back</a>
-    <h3 style="color:#EEEEEE;">{{post.text}}</h3>
+    <p style="color:#EEEEEE;font-size:1.2em">{{post.text}}</p>
 </div>
 
 <div class="commentHolder" ng-repeat="comment in post.comments | orderBy: '-upvotes' ">
     <span class="comment-body ">{{comment.commentText}}</span> <br>
     <span class="glyphicon glyphicon-thumbs-up " ng-click="upvote() "></span>
-    <span class="glyphicon glyphicon-thumbs-down " ng-click="downvote() "></span> {{comment.upVote}} - by {{comment.author}} <br>
+    <span class="glyphicon glyphicon-thumbs-down " ng-click="downvote() "></span> {{post.upVote}} - by {{comment.author}} <br>
 </div>
 <form ng-submit="addComment(comment) ">
     <h3 style="color:#EEEEEE;">Add a new comment</h3>

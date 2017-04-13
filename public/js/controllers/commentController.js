@@ -10,7 +10,7 @@ app.controller('CommentController', function($scope, $stateParams, postFactory, 
  console.log($scope.text);
  //comments array
  $scope.post.comments;
- console.log("comments array");
+ console.log("comments array from db");
  console.log($scope.post.comments);
 
  //submites comments onto comments array and send it to DB
