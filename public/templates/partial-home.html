@@ -5,8 +5,9 @@
             <span style="font-size:1.8em; padding:2px">{{post.upVote}} </span>
             <button type="button" id="down" class="fa fa-arrow-circle-down" ng-click="downVote(dec, 1)"></button>
             <span style="font-size:25px;color:#BDDAA5">{{post.title}}</span><br> by <span style="color:#ffb600;"> {{post.author}}</span> <br>
-            <span class="post-text"> {{post.text}} </span> <br>{{post.link}} <br>
-            <a class="pull-right comments" ui-sref="comment({id: post._id})">{{commentCounter}} comments</a>
+            <span class="post-text"> {{post.text}} </span> <br>
+            <a ng-href="{{post.link}}">{{post.link}}</a><br>
+            <a class="pull-right comments " ui-sref="comment({id: post._id}) ">{{commentCounter}} comments</a>
         </div>
     </div>
 

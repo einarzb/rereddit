@@ -9,7 +9,7 @@ $scope.title;
   .then(function(){
     //console.log(response);
     $scope.posts = postFactory.posts; //the items are populating the array
-    console.log($scope.posts);
+    //console.log($scope.posts);
   })
   .catch(function(error){
     console.log(error);
