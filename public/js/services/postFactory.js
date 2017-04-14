@@ -23,7 +23,7 @@ app.factory('postFactory', function($http) {
   //remove post
   postsFactory.removePost = function(id){
     console.log("im removepost in factory")
-    return $http.delete('/post' + id).then(function(response){
+    return $http.delete('/post', id).then(function(response){
       return response.data;
     });
   };
