@@ -1,7 +1,6 @@
 app.controller('PostController', function($scope, postFactory, $state) {
 $scope.posts = [];
 $scope.title;
-$scope.sub;
 
 //getting items from db
   $scope.getPosts = postFactory.getPosts;
