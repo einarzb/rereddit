@@ -31,19 +31,6 @@ app.use(express.static('node_modules'));
 // app.use('/posts', postsRoutes);
 // app.use('/auth', authRoutes);
 
-
-// Get
-// app.get('/', function(req, res, next) {
-//   Post.find(function(error, redditdb) {
-//     if (error) {
-//       console.error(error)
-//       return next(error);
-//     } else {
-//       res.send(redditdb);
-//     }
-//   });
-// });
-
 //populating items from db
 app.get('/get', function (req, res, next) {
     Post.find(function (error, redditdb) {

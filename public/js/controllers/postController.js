@@ -1,5 +1,7 @@
 app.controller('PostController', function($scope, postFactory, $state) {
 $scope.posts = [];
+$scope.title;
+$scope.sub;
 
 //getting items from db
   $scope.getPosts = postFactory.getPosts;
@@ -8,7 +10,7 @@ $scope.posts = [];
   .then(function(){
     //console.log(response);
     $scope.posts = postFactory.posts; //the items are populating the array
-    //console.log($scope.posts);
+    console.log($scope.posts);
   })
   .catch(function(error){
     console.log(error);
