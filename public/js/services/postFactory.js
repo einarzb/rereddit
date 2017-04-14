@@ -20,6 +20,9 @@ app.factory('postFactory', function($http) {
     });
   };
 
+  //remove post
+  
+
   //function add comments to db
   postsFactory.addComment = function(comment){
     console.log("im addComment and im in factory")
