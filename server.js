@@ -94,6 +94,18 @@ app.post('/post', function(req, res, next){
     })
 });
 
+//removing post
+app.delete('/post/:id', function(req,res,next){
+  Post.remove({_id: req.params.id}, function(err){
+    if(err){
+      console.log(err);
+      return next(err);
+    } else {
+      res.send("item is gone");
+    }
+  });
+});
+
 //upVote / downVote routes
 app.put('/post/:id', function(req, res, next){
   //posts before change
