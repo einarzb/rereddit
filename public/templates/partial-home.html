@@ -8,6 +8,7 @@
             <span style="font-size:25px;color:#BDDAA5">{{post.title}}</span><br> by <span style="color:#ffb600;"> {{post.author}}</span> <br>
             <span class="post-text"> {{post.text}} </span> <br>
             <a ng-href="{{post.link}}">{{post.link}}</a><br>
+            <!--state({path: parameter})-->
             <a class="pull-right comments " ui-sref="comment({id: post._id})">{{commentCounter}} comments</a>
         </div>
     </div>
