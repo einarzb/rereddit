@@ -17,15 +17,15 @@ app.controller('CommentController', function($scope, $stateParams, postFactory, 
 
 //length of comments array - num of coments
  $scope.commentCounter = $scope.post.comments.length;
- if($scope.commentCounter == "0") {
-    $scope.commentCounter = "no";
- }
+   if($scope.commentCounter == "0") {
+      $scope.commentCounter = "no";
+   }
  console.log($scope.commentCounter);
 
  //submites comments onto comments array and send it to DB
   $scope.addComment = function (comment) {
     console.log("im in comments");
-    postFactory.addComment(comment)
+    postFactory.addComment(comment, $stateParams.id)
     .then(function(response){
       //populating the client-side array
       $scope.post.comments.push(response.data);

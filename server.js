@@ -39,18 +39,19 @@ app.get('/get', function (req, res, next) {
             return next(error); //express next function. middleware
           } else {
             res.send(redditdb);
-            console.log(redditdb);
-            console.log("im einar");
+            // console.log(redditdb);
+            // console.log("im einar");
           }
      });
 });
 
 //fetching posts id - for populate comment and other use! must use FINDONE only
 app.get('/post/:id', function (req, res, next) {
+  console.log(req.params.id);
   //populate comments
   Post.findOne({_id: req.params.id}).populate('comments').exec(function(error, post){
-    console.log("im pupolated in server");
-    console.log(post);
+    // console.log("im pupolated in server");
+    // console.log(post);
           if (error) {
             console.error(error)
             return next(error); //express next function. middleware
@@ -71,8 +72,8 @@ var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" 
 
 request(verificationUrl,function(error,response,body) {
     body = JSON.parse(body);
-    console.log("im body");
-    console.log(body);
+    // console.log("im body");
+    // console.log(body);
     if(body.success !== undefined && !body.success) {
         return res.json({"responseCode" : 1,"responseDesc" : "Failed captcha verification"});
       }
@@ -88,7 +89,7 @@ app.post('/post', function(req, res, next){
           console.error(err)
           return next(err);
       } else {
-          console.log(post);
+          //console.log(post);
           res.json(newPost)
       }
     })
@@ -96,41 +97,49 @@ app.post('/post', function(req, res, next){
 
 //removing post
 app.delete('/post/:id', function(req,res,next){
-  Post.remove({_id: req.params.id}, function(err){
+  console.log(req.params.id);
+  Post.remove({_id: req.params.id}, function(err, result){
     if(err){
       console.log(err);
       return next(err);
     } else {
+
       res.send("item is gone");
     }
   });
 });
 
 //upVote / downVote routes
-app.put('/post/:id', function(req, res, next){
-  //posts before change
-  Post.find({_id: req.params.id}).exec(function(err, post){
-  });
-  //posts after voting
-  Post.findOneAndUpdate({_id: req.params.id}, req.body, {new:true}).exec(function( err, post){ //pass 3 things: id, req.body, boolean and func
-     if(err){
-      console.error(err);
-      return next (err);
-    }else{
-      res.send(post);
-    }
-  });
-});
+// app.put('/post/:id', function(req, res, next){
+//   //posts before change
+//   Post.find({_id: req.params.id}).exec(function(err, post){
+//   });
+//   //posts after voting
+//   Post.findOneAndUpdate({_id: req.params.id}, req.body, {new:true}).exec(function( err, post){ //pass 3 things: id, req.body, boolean and func
+//      if(err){
+//       console.error(err);
+//       return next (err);
+//     }else{
+//       res.send(post);
+//     }
+//   });
+// });
 
 
 // comment routes
-app.post('/comment/:id', function(req,res){
+app.post('/posts/:id', function(req,res){
+  // console.log("im in server post comment route");
+  // console.log(req.params.id);
   Post.findOne({_id: req.params.id}, function(err, foundPost){
     if (err){
         console.error(err)
         return next(err);
     } else {
+      // console.log("in the search", foundPost);
+      // console.log("req.body", req.body);
         var newComment = new Comment(req.body);
+        // console.log(newComment);
+        // console.log(req.body);
         foundPost.comments.push(newComment);
         newComment.save();
         foundPost.save();
@@ -146,8 +155,8 @@ app.get('/author/:id', function(req,res){
         console.error(err)
         return next(err);
     } else {
-        res.json(foundPost);
-        console.log(foundPost);
+       // console.log(foundPost);
+       return res.json(foundPost);
        }
   });
 });

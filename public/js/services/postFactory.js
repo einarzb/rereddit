@@ -22,16 +22,23 @@ app.factory('postFactory', function($http) {
 
   //remove post
   postsFactory.removePost = function(id){
-    console.log("im removepost in factory")
-    return $http.delete('/post', id).then(function(response){
+    console.log("im removepost in factory");
+    console.log(id);
+    return $http.delete('/post/' + id).then(function(response){
       return response.data;
     });
   };
 
-  //function add comments to db
-  postsFactory.addComment = function(comment){
+  //function sends comments to server route and return promise to ctrler
+  postsFactory.addComment = function(comment, postId){
     console.log("im addComment and im in factory")
-    return $http.post('/comment', comment).then(function(response){
+    console.log("the postId is:", postId);
+    console.log("comment data to send to server:", comment);
+    //NOTE: when passing data via $http requests, the body must be transferred as an object
+    let newComment = {
+      body: comment
+    };
+    return $http.post('/posts/' + postId, newComment).then(function(response){
       return response.data;//happens later on the future
     });
   };

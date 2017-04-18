@@ -31,14 +31,13 @@ $scope.title;
     };
 
 $scope.removePost = function(id){
-  //post id
-  console.log($scope.posts);
   console.log(id);
   console.log("delete me");
   postFactory.removePost(id)
     .then(function(response){
+      console.log(response);
+    //splicing the client-side array
     $scope.posts.splice(id, 1);
-    console.log($scope.posts);
   })
   .catch(function(error){
     console.log(error);
