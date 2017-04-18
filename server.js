@@ -98,13 +98,12 @@ app.post('/post', function(req, res, next){
 //removing post
 app.delete('/post/:id', function(req,res,next){
   console.log(req.params.id);
-  Post.remove({_id: req.params.id}, function(err, result){
+  Post.findByIdAndRemove(req.params.id, function(err, foundPost){
     if(err){
-      console.log(err);
+      console.error(err);
       return next(err);
     } else {
-
-      res.send("item is gone");
+      res.send(foundPost, "item deleted");
     }
   });
 });

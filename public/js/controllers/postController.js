@@ -30,14 +30,15 @@ $scope.title;
       })
     };
 
-$scope.removePost = function(id){
-  console.log(id);
-  console.log("delete me");
-  postFactory.removePost(id)
+$scope.removePost = function(){
+    var self = this;
+    console.log(self);
+    console.log(self.post._id);
+  postFactory.removePost(self.post._id)
     .then(function(response){
       console.log(response);
-    //splicing the client-side array
-    $scope.posts.splice(id, 1);
+    //splicing the client-side array by the position of a certain index inside the ng-repeat's self scope
+    $scope.posts.splice(self.$index, 1);
   })
   .catch(function(error){
     console.log(error);
