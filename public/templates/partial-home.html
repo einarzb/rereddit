@@ -9,7 +9,7 @@
             <span class="post-text"> {{post.text}} </span> <br>
             <a ng-href="{{post.link}}">{{post.link}}</a><br>
             <!--state({path: parameter})-->
-            <a class="pull-right comments " ui-sref="comment({id: post._id})">{{commentCounter}} comments</a>
+            <a class="pull-right comments " ui-sref="comment({id: post._id})">{{post.comments.length}} comments</a>
         </div>
     </div>
 </div>
