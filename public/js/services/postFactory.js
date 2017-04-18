@@ -32,16 +32,13 @@ app.factory('postFactory', function($http) {
 
   //function sends comments to server route and return promise to ctrler
   postsFactory.addComment = function(comment, postId){
-    console.log("im addComment and im in factory")
-    console.log("the postId is:", postId);
     console.log("comment data to send to server:", comment);
-    //NOTE: when passing data via $http requests, the body must be transferred as an object
-    let newComment = {
-      body: comment
-    };
-    return $http.post('/posts/' + postId, newComment).then(function(response){
-      return response.data;//happens later on the future
-    });
+    return $http.post('/posts/' + postId, comment)
+      .then(function(response){
+        // console.log(response);
+        // console.log(response.data);
+        return response.data;//happens later on the future
+      });
   };
 
   //function get itmes populated in mongoose to the ctrler

@@ -1,7 +1,7 @@
 <div class="page-header">
     <p class="postRefHolder"> {{post.title}} <br> <span style="font-size:0.9em">{{post.text}}</span> <br>
         <span style="font-size:0.7em">written by - <span style="color:#dd4b4b;">{{post.author}}</span></span>
-        <span class="commentCounter pull-right">{{commentCounter}} comments</span>
+        <span class="commentCounter pull-right">{{post.comments.length}} comments</span>
     </p>
 </div>
 
@@ -16,7 +16,7 @@
 <form ng-submit="addComment(body) ">
     <h3 style="color:#EEEEEE; ">Add a new comment</h3>
     <div class="form-group ">
-        <input type="text " class="form-control " placeholder="Comment " ng-model="body"></input>
+        <input type="text " class="form-control " placeholder="Comment " ng-model="body.comment"></input>
     </div>
     <button type="submit " class="btn btn-primary btn-sm ">Post</button>
     <a class="btn btn-danger btn-sm " ui-sref="home ">back to feed</a>

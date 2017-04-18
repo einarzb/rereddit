@@ -47,7 +47,7 @@ app.get('/get', function (req, res, next) {
 
 //fetching posts id - for populate comment and other use! must use FINDONE only
 app.get('/post/:id', function (req, res, next) {
-  console.log(req.params.id);
+//  console.log(req.params.id);
   //populate comments
   Post.findOne({_id: req.params.id}).populate('comments').exec(function(error, post){
     // console.log("im pupolated in server");
@@ -103,7 +103,7 @@ app.delete('/post/:id', function(req,res,next){
       console.error(err);
       return next(err);
     } else {
-      res.send(foundPost, "item deleted");
+      res.send(foundPost);
     }
   });
 });
@@ -127,18 +127,19 @@ app.delete('/post/:id', function(req,res,next){
 
 // comment routes
 app.post('/posts/:id', function(req,res){
-  // console.log("im in server post comment route");
-  // console.log(req.params.id);
+  console.log("gello");
+  console.log(req.body);
+  console.log(req.params.id);
   Post.findOne({_id: req.params.id}, function(err, foundPost){
     if (err){
         console.error(err)
         return next(err);
     } else {
-      // console.log("in the search", foundPost);
+        // console.log("in the search", foundPost);
+        // console.log(req.body);
       // console.log("req.body", req.body);
         var newComment = new Comment(req.body);
         // console.log(newComment);
-        // console.log(req.body);
         foundPost.comments.push(newComment);
         newComment.save();
         foundPost.save();

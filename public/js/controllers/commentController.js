@@ -5,7 +5,7 @@ app.controller('CommentController', function($scope, $stateParams, postFactory, 
   //relevantPost returns theWholePost.data from the postFactory function in APP.js
  $scope.post = relevantPost;
  // console.log("im an object full of data");
- // console.log($scope.post);
+ console.log($scope.post);
  $scope.text = relevantPost.text;
  //post body
  // console.log("im text");
@@ -16,21 +16,24 @@ app.controller('CommentController', function($scope, $stateParams, postFactory, 
  // console.log($scope.post.comments);
 
 //length of comments array - num of coments
- $scope.commentCounter = $scope.post.comments.length;
-   if($scope.commentCounter == "0") {
-      $scope.commentCounter = "no";
-   }
- console.log($scope.commentCounter);
+ // $scope.commentCounter = $scope.post.comments.length;
+  //  if($scope.commentCounter == "0") {
+  //     $scope.commentCounter = "no";
+  //  }
+ //console.log($scope.commentCounter);
 
  //submites comments onto comments array and send it to DB
   $scope.addComment = function (comment) {
-    console.log("im in comments");
+    console.log($stateParams.id);
+    //console.log(comment);
     postFactory.addComment(comment, $stateParams.id)
-    .then(function(response){
+    .then(function(response) {
+    //  console.log(response); //full object
+      console.log(response);
       //populating the client-side array
-      $scope.post.comments.push(response.data);
-      console.log("populating client-side");
-      console.log($scope.post.comments);
+      $scope.post = response;
+      // console.log("populating client-side");
+      // console.log($scope.post.comments);
       })
     .catch(function(error){
         console.log(error);
