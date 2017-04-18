@@ -1,22 +1,22 @@
 <div class="page-header">
-    <p class="postRefHolder"> {{post.title}} <br> <span style="font-size:0.9em">{{post.text}}</span> <br>
+    <p class="postRefHolder">   <span class="h2">{{post.title}}</span><br> <span style="font-size:0.9em">{{post.text}}</span> <br>
         <span style="font-size:0.7em">written by - <span style="color:#dd4b4b;">{{post.author}}</span></span>
         <span class="commentCounter pull-right">{{post.comments.length}} comments</span>
     </p>
 </div>
 
-<div class="commentHolder " ng-repeat="comment in post.comments | orderBy: '-upvotes' ">
-    <span class="comment-body ">{{comment.commentText}}</span> <br>
+<div class="commentHolder" ng-repeat="comment in post.comments | orderBy: '-upvotes' ">
+    <span class="comment-body">{{comment.commentText}}</span> <br>
     <button type="button" id="up" class="fa fa-arrow-circle-up" ng-click="commentvote(inc, 1)"></button>
     <span style="font-size:1.2em; padding:1px">{{comment.vote}} </span>
     <button type="button" id="down" class="fa fa-arrow-circle-down" ng-click="commentvote(dec, 1)">
     </button> <span style="color:#dd4b4b;">{{comment.author}}</span>
     </span> <br>
 </div>
-<form ng-submit="addComment(body) ">
+<form ng-submit="addComment(comment) ">
     <h3 style="color:#EEEEEE; ">Add a new comment</h3>
     <div class="form-group ">
-        <input type="text " class="form-control " placeholder="Comment " ng-model="body.comment"></input>
+        <input type="text " class="form-control" placeholder="Comment" ng-model="comment.commentText"></input>
     </div>
     <button type="submit " class="btn btn-primary btn-sm ">Post</button>
     <a class="btn btn-danger btn-sm " ui-sref="home ">back to feed</a>

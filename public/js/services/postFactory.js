@@ -31,12 +31,10 @@ app.factory('postFactory', function($http) {
   };
 
   //function sends comments to server route and return promise to ctrler
-  postsFactory.addComment = function(comment, postId){
-    console.log("comment data to send to server:", comment);
+  postsFactory.addComment = function(comment, postId){ //2 parameters(text of comment, postid)
+    // console.log("comment data to send to server:", comment);
     return $http.post('/posts/' + postId, comment)
       .then(function(response){
-        // console.log(response);
-        // console.log(response.data);
         return response.data;//happens later on the future
       });
   };

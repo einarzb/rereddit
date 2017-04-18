@@ -62,6 +62,10 @@ h3, label{
   margin-top:-12px;
   color:#5588A3;
 }
+
+.comment-body{
+  padding:10px;
+}
 .g-recaptcha {margin-bottom: 10px;}
 .tags {
   display:flex;

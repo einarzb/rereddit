@@ -127,21 +127,21 @@ app.delete('/post/:id', function(req,res,next){
 
 // comment routes
 app.post('/posts/:id', function(req,res){
-  console.log("gello");
-  console.log(req.body);
-  console.log(req.params.id);
+  //console.log(req.body); the text of the comment
+  //console.log(req.params.id); the id of the post
   Post.findOne({_id: req.params.id}, function(err, foundPost){
     if (err){
         console.error(err)
         return next(err);
     } else {
-        // console.log("in the search", foundPost);
-        // console.log(req.body);
-      // console.log("req.body", req.body);
         var newComment = new Comment(req.body);
-        // console.log(newComment);
+        console.log(newComment); //output id of comment!
+        //foundPost.comments is the array of comments of this.post
+        //newcomment id is being pushed to the comments array
         foundPost.comments.push(newComment);
+        //id is being saved
         newComment.save();
+        //full post object with array comments is being saved
         foundPost.save();
         res.json(foundPost);
     }
