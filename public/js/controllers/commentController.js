@@ -23,7 +23,24 @@ app.controller('CommentController', function($scope, $stateParams, postFactory, 
       })
   };
 
-
+$scope.removeComment = function (){
+  console.log("im in remove comment");
+  var self = this;
+  console.log($stateParams.id); //post's id
+  // console.log(self);
+  // console.log(self.comment._id); //comment id
+  // console.log(self.$index); //comments index
+  postFactory.removeComment(self.comment._id, $stateParams.id)
+    .then(function(response){
+      console.log("im rsponse");
+        console.log(response);
+        //splicing the client-side array by the position of a certain index inside the ng-repeat's self scope
+        $scope.comments.splice(self.$index, 1);
+    })
+    .catch(function(error){
+        console.log(error);
+      })
+};
 
 
 

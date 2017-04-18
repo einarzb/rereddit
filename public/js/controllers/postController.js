@@ -34,7 +34,7 @@ $scope.removePost = function(){
     var self = this;
     console.log(self);
     console.log(self.post._id);
-  postFactory.removePost(self.post._id)
+    postFactory.removePost(self.post._id)
     .then(function(response){
       console.log(response);
     //splicing the client-side array by the position of a certain index inside the ng-repeat's self scope

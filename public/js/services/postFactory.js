@@ -39,6 +39,18 @@ app.factory('postFactory', function($http) {
       });
   };
 
+  //remove comment
+  postsFactory.removeComment = function(commentid, postId){
+    // console.log("im remove comment in factory");
+    // console.log(commentid, "comment id");
+    // console.log(postId, "postid");
+    return $http.delete('/posts/' + postId, commentid)
+      .then(function(response){
+      console.log(response.data._id); //prints posts' id
+      return response.data._id;
+    });
+  };
+
   //function get itmes populated in mongoose to the ctrler
     postsFactory.getPosts = function(post){
       return $http.get('/get').then(function(response){

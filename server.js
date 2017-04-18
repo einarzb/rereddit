@@ -125,7 +125,7 @@ app.delete('/post/:id', function(req,res,next){
 // });
 
 
-// comment routes
+// add comment routes
 app.post('/posts/:id', function(req,res){
   //console.log(req.body); the text of the comment
   //console.log(req.params.id); the id of the post
@@ -141,6 +141,29 @@ app.post('/posts/:id', function(req,res){
         foundPost.comments.push(newComment);
         //id is being saved
         newComment.save();
+        //full post object with array comments is being saved
+        foundPost.save();
+        res.json(foundPost);
+    }
+  })
+});
+
+//delete comments
+app.delete('/posts/:id', function(req,res){
+  //console.log(req.body); the text of the comment
+  //console.log(req.params.id); the id of the post
+  Post.findOne({_id: req.params.id}, function(err, foundPost){
+    if (err){
+        console.error(err)
+        return next(err);
+    } else {
+        var deletedComment = new Comment(req.body);
+        console.log(deletedComment); //output id of comment!
+        //foundPost.comments is the array of comments of this.post
+        //deletedComment id is being deleted to the comments array
+        foundPost.comments.splice(deletedComment, 1);
+        //id is being saved
+        deletedComment.save();
         //full post object with array comments is being saved
         foundPost.save();
         res.json(foundPost);
