@@ -33,9 +33,9 @@ $scope.removeComment = function (){
   postFactory.removeComment(self.comment._id, $stateParams.id)
     .then(function(response){
       console.log("im rsponse");
-        console.log(response);
+        console.log(response);//output id of post!
         //splicing the client-side array by the position of a certain index inside the ng-repeat's self scope
-        $scope.comments.splice(self.$index, 1);
+        $scope.post = response;
     })
     .catch(function(error){
         console.log(error);
