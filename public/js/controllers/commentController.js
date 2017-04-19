@@ -12,16 +12,13 @@ app.controller('CommentController', function($scope, $stateParams, postFactory, 
  //submites comments onto comments array and send it to DB
   $scope.addComment = function (comment) {
     // console.log($stateParams.id);
-
+    console.log(comment); //comment is object {with text}
+    console.log(comment.commentText);
+    //im sending to the factory an object of commentText (from client) and the post's id (I get from app.js)
     postFactory.addComment(comment, $stateParams.id)
-    .then(function(response) { //full object
-      console.log('-----------response from the controller -----------')
-      console.log('----------- needs to have the latest comment -----------')
-
-      console.log(response);
-      //populating the client-side array
-      $scope.post = response; //reassinging the array with the object that update the comments array too
-      // $scope.post.comments.push(response);
+    .then(function(response) { //response is the full object(post)
+      //reassinging the array with the object that update the comments array too
+      $scope.post = response;
       })
     .catch(function(error){
         console.log(error);
@@ -29,7 +26,6 @@ app.controller('CommentController', function($scope, $stateParams, postFactory, 
   };
 
 $scope.removeComment = function (){
-  console.log("im in remove comment");
   var self = this;
   console.log($stateParams.id); //post's id
   // console.log(self);

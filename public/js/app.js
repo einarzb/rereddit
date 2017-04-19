@@ -26,7 +26,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             controller: 'PostController'
           })
     .state('comment', {
-      url: '/posts/:id', //stateParams use this id in ctrler
+      url: '/posts/:id/', //stateParams use this id in ctrler
       templateUrl: '/templates/comments.html',
       controller: 'CommentController',
       //resolve - function that runs only when comment state is on. only when it ends loading - then the ctrler would run.
