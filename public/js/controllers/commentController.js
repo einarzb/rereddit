@@ -3,7 +3,7 @@ app.controller('CommentController', function($scope, $stateParams, postFactory, 
 //relevantPost returns theWholePost.data from the postFactory function in APP.js
  $scope.post = relevantPost;
 
- console.log($scope.post);
+ //console.log($scope.post);
  $scope.text = relevantPost.text;
 
  //comments array
@@ -12,8 +12,13 @@ app.controller('CommentController', function($scope, $stateParams, postFactory, 
  //submites comments onto comments array and send it to DB
   $scope.addComment = function (comment) {
     // console.log($stateParams.id);
+
     postFactory.addComment(comment, $stateParams.id)
     .then(function(response) { //full object
+      console.log('-----------response from the controller -----------')
+      console.log('----------- needs to have the latest comment -----------')
+
+      console.log(response);
       //populating the client-side array
       $scope.post = response; //reassinging the array with the object that update the comments array too
       // $scope.post.comments.push(response);
@@ -35,7 +40,7 @@ $scope.removeComment = function (){
       console.log("im rsponse");
         console.log(response);//output id of post!
         //splicing the client-side array by the position of a certain index inside the ng-repeat's self scope
-        $scope.post = response;
+        $scope.comments.splice(response, 1)
     })
     .catch(function(error){
         console.log(error);

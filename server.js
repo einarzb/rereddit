@@ -129,46 +129,60 @@ app.delete('/post/:id', function(req,res,next){
 app.post('/posts/:id', function(req,res){
   //console.log(req.body); the text of the comment
   //console.log(req.params.id); the id of the post
-  Post.findOne({_id: req.params.id}, function(err, foundPost){
-    if (err){
-        console.error(err)
-        return next(err);
-    } else {
-        var newComment = new Comment(req.body);
-        console.log(newComment); //output id of comment!
-        //foundPost.comments is the array of comments of this.post
-        //newcomment id is being pushed to the comments array
-        foundPost.comments.push(newComment);
-        //id is being saved
-        newComment.save();
-        //full post object with array comments is being saved
-        foundPost.save();
-        res.json(foundPost);
+  //find post to add to comment
+  //find post to respond to client with un populated comments
+  Post.findOne({_id: req.params.id}).populate('comments').exec(function(err, foundPost){
+    if(err){
+      return next(err)
+    }else{
+      var newComment = new Comment(req.body);
+      console.log(newComment); //output id of comment!
+      //foundPost.comments is the array of comments of this.post
+      //newcomment id is being pushed to the comments array
+      foundPost.comments.push(newComment);
+      //id is being saved
+      newComment.save();
+      //full post object with array comments is being saved
+      foundPost.save();
+      console.log('hhhheeeeerrrre is the populated found post')
+      console.log(foundPost);
+      res.send(foundPost)
     }
-  })
+  });
 });
 
 //delete comments
 app.delete('/posts/:id', function(req,res){
   //console.log(req.body); the text of the comment
   //console.log(req.params.id); the id of the post
-  Post.findOne({_id: req.params.id}, function(err, foundPost){
-    if (err){
-        console.error(err)
-        return next(err);
-    } else {
-        var deletedComment = new Comment(req.body);
-        console.log(deletedComment); //output id of comment!
-        //foundPost.comments is the array of comments of this.post
-        //deletedComment id is being deleted to the comments array
-        foundPost.comments.splice(deletedComment, 1);
-        //id is being saved
-        deletedComment.save();
-        //full post object with array comments is being saved
-        foundPost.save();
-        res.json(foundPost);
+  // Post.findOne({_id: req.params.id}, function(err, foundPost){
+  //   if (err){
+  //       console.error(err)
+  //       return next(err);
+  //   } else {
+  //       var deletedComment = new Comment(req.body);
+  //       console.log(deletedComment); //output id of comment!
+  //       //foundPost.comments is the array of comments of this.post
+  //       //deletedComment id is being deleted to the comments array
+  //       foundPost.comments.splice(deletedComment, 1);
+  //       //id is being saved
+  //       deletedComment.save();
+  //       //full post object with array comments is being saved
+  //       foundPost.save();
+  //       res.json(foundPost);
+  //   }
+  // })
+console.log('here is the comment id')
+console.log(req.body.commentid)
+  Comment.findOneAndRemove({_id: req.body.commentid}).exec(function(err, commentRemoved){
+    if(err){
+      return next(err)
+    }else{
+      console.log('-----------------oh look its the removed ccomment ---------------------');
+      console.log(commentRemoved);
+      res.send(commentRemoved);
     }
-  })
+  });
 });
 
 //author routes - getting all the author's posts

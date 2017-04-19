@@ -35,6 +35,8 @@ app.factory('postFactory', function($http) {
     // console.log("comment data to send to server:", comment);
     return $http.post('/posts/' + postId, comment)
       .then(function(response){
+        // console.log('here is the addcmnt rsponse in the postFact')
+        // console.log(response.data);
         return response.data;//happens later on the future
       });
   };
@@ -44,7 +46,10 @@ app.factory('postFactory', function($http) {
     // console.log("im remove comment in factory");
     // console.log(commentid, "comment id");
     // console.log(postId, "postid");
-    return $http.delete('/posts/' + postId, commentid)
+    console.log('-------comment id from the factory-------')
+      var commentToRemove = {commentid: commentid};
+    console.log(commentToRemove)
+    return $http.delete('/posts/' + postId, commentToRemove)
       .then(function(response){
       console.log(response.data._id); //prints posts' id
       return response.data._id;
