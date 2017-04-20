@@ -21,6 +21,8 @@ app.controller('CommentController', function($scope, $stateParams, postFactory, 
       $scope.post = response;
       //clear input field
       $scope.comment.commentText = "";
+      //array length
+      console.log($scope.post.comments.length);
       })
     .catch(function(error){
         console.log(error);
@@ -37,6 +39,7 @@ $scope.removeComment = function (){
     .then(function(response){
         //splicing the client-side array by the position of a certain index inside the ng-repeat's self scope
          $scope.post.comments.splice(self.$index, 1);
+        //comments array length
          console.log($scope.post.comments.length);
 
     })

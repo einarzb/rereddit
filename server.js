@@ -128,20 +128,21 @@ app.delete('/post/:id', function(req,res,next){
 
 // add comment routes
 app.post('/posts/:id', function(req,res){
-  //console.log(req.body); the text of the comment
-  //console.log(req.params.id); the id of the post
+  //console.log(req.body); //the text of the comment
+  //console.log(req.params.id); //the id of the post
   Post.findOne({_id: req.params.id}).populate('comments').exec(function(err, foundPost){
     if(err){
       return next(err)
     }else{
       var newComment = new Comment(req.body);
-      console.log(newComment); //output id of comment!
-      //foundPost.comments is the array of comments of this.post
-      //newcomment id is being pushed to the comments array
-      foundPost.comments.push(newComment);
-      //id is being saved
+      console.log("im new comment");
+      console.log(newComment); //output object of comment text and comment id
+
+      //newcomment object is being pushed to the comments array
+      foundPost.comments.push(newComment);//the array of comments of this.post
+      //object is being saved
       newComment.save();
-      //full post object with array comments is being saved
+      //post object with updated array comments is being saved
       foundPost.save();
       res.send(foundPost)
     }
@@ -158,10 +159,12 @@ app.delete('/posts/:id/comments/:commentID', function(req,res){
       console.error(err)
       return next(err);
     }else{
-      console.log(commentRemoved);
+      console.log("im comment reomved-");
+      console.log(commentRemoved); //an object with commentext and id
       res.send(commentRemoved);
     }
   });
+
 // });
 //   Post.findOne({_id: req.params.id}, function(err, foundPost){
 //     if (err){
