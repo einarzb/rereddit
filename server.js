@@ -149,7 +149,7 @@ app.post('/posts/:id', function(req,res){
   });
 });
 
-//delete comments
+//delete comments from comments array
 app.delete('/posts/:id/comments/:commentID', function(req,res){
   //delete doesnt have req.body only req.params
   console.log("im post id", req.params.id); //the id of the post
@@ -163,26 +163,26 @@ app.delete('/posts/:id/comments/:commentID', function(req,res){
       console.log(commentRemoved); //an object with commentext and id
       res.send(commentRemoved);
     }
+    //delete comment from comments array INSIDE post object
+    Post.findOne({_id: req.params.id}, function(err, foundPost){
+      if (err){
+          console.error(err)
+          return next(err);
+      } else {
+          var deletedComment = new Comment(req.body);
+          console.log(deletedComment); //output id of comment!
+          //foundPost.comments is the array of comments of this.post
+          //deletedComment id is being deleted to the comments array
+          foundPost.comments.splice(deletedComment, 1);
+          //id is being saved
+          deletedComment.save();
+          //full post object with array comments is being saved
+          foundPost.save();
+          //res.json(foundPost);
+      }
+    });
   });
-
-// });
-//   Post.findOne({_id: req.params.id}, function(err, foundPost){
-//     if (err){
-//         console.error(err)
-//         return next(err);
-//     } else {
-//         var deletedComment = new Comment(req.body);
-//         console.log(deletedComment); //output id of comment!
-//         //foundPost.comments is the array of comments of this.post
-//         //deletedComment id is being deleted to the comments array
-//         foundPost.comments.splice(deletedComment, 1);
-//         //id is being saved
-//         deletedComment.save();
-//         //full post object with array comments is being saved
-//         foundPost.save();
-//         res.json(foundPost);
-//     }
-  })
+});
 
 
 
