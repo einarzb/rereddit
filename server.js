@@ -143,8 +143,6 @@ app.post('/posts/:id', function(req,res){
       newComment.save();
       //full post object with array comments is being saved
       foundPost.save();
-      console.log('hhhheeeeerrrre is the populated found post')
-      console.log(foundPost);
       res.send(foundPost)
     }
   });

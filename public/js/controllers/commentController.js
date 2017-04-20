@@ -19,6 +19,8 @@ app.controller('CommentController', function($scope, $stateParams, postFactory, 
     .then(function(response) { //response is the full object(post)
       //reassinging the array with the object that update the comments array too
       $scope.post = response;
+      //clear input field
+      $scope.comment.commentText = "";
       })
     .catch(function(error){
         console.log(error);
@@ -33,10 +35,10 @@ $scope.removeComment = function (){
   // console.log(self.$index); //comments index
   postFactory.removeComment(self.comment._id, $stateParams.id)
     .then(function(response){
-      console.log("im rsponse");
-        console.log(response);//output id of post!
         //splicing the client-side array by the position of a certain index inside the ng-repeat's self scope
-        $scope.comments.splice(response, 1)
+         $scope.post.comments.splice(self.$index, 1);
+         console.log($scope.post.comments.length);
+
     })
     .catch(function(error){
         console.log(error);
@@ -51,10 +53,6 @@ $scope.removeComment = function (){
 
   $scope.downvote = function() {
     //todo
-  }
-
-  $scope.deleteComment = function() {
-    //extension todo - only for admins
   }
 
 });

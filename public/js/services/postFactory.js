@@ -47,7 +47,6 @@ app.factory('postFactory', function($http) {
     console.log(commentToRemove.commentid);
     return $http.delete('/posts/' + postId + '/comments/' + commentToRemove.commentid)
       .then(function(response){
-      console.log(response);
       return response;
     });
   };
